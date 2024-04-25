@@ -59,6 +59,7 @@ type TaskType =
   | 'LINKIS'
   | 'DATA_FACTORY'
   | 'REMOTESHELL'
+  | 'ALIYUN_SERVERLESS_SPARK'
 
 type ProgramType = 'JAVA' | 'SCALA' | 'PYTHON'
 
