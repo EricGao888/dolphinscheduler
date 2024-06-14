@@ -222,6 +222,11 @@
             <artifactId>dolphinscheduler-task-remoteshell</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.dolphinscheduler</groupId>
+            <artifactId>dolphinscheduler-task-flink-materialized-table</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

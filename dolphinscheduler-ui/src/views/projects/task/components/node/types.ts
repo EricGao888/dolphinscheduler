@@ -454,6 +454,12 @@ interface ITaskParams {
   yarnQueue?: string
   awsRegion?: string
   kubeConfig?: string
+  identifier?: string
+  gatewayEndpoint?: string
+  isPeriodic?: boolean
+  dynamicOptions?: string
+  staticPartitions?: string
+  executionConfig?: string
 }
 
 interface INodeData

@@ -911,7 +911,19 @@ export default {
     yarn_queue_tips: 'Please input yarn queue(optional)',
     dependent_type: 'Dependency Type',
     dependent_on_workflow: 'Dependent on workflow',
-    dependent_on_task: 'Dependent on task'
+    dependent_on_task: 'Dependent on task',
+    identifier: 'identifier',
+    identifier_tips: 'identifier',
+    gateway_endpoint: 'gateway_endpoint',
+    gateway_endpoint_tips: 'gateway_endpoint',
+    is_periodic: 'is_periodic',
+    is_periodic_tips: 'is_periodic',
+    dynamic_options: 'dynamic_options',
+    dynamic_options_tips: 'dynamic_options',
+    static_partitions: 'static_partitions',
+    static_partitions_tips: 'static_partitions',
+    execution_config: 'execution_config',
+    execution_config_tips: 'execution_config'
   },
   menu: {
     fav: 'Favorites',

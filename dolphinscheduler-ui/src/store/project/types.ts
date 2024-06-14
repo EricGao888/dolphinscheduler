@@ -59,6 +59,7 @@ type TaskType =
   | 'LINKIS'
   | 'DATA_FACTORY'
   | 'REMOTESHELL'
+  | 'FLINK_MATERIALIZED_TABLE'
 
 type ProgramType = 'JAVA' | 'SCALA' | 'PYTHON'
 

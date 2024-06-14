@@ -881,7 +881,19 @@ export default {
     yarn_queue_tips: '请输入Yarn队列(选填)',
     dependent_type: '依赖类型',
     dependent_on_workflow: '依赖于工作流',
-    dependent_on_task: '依赖于任务'
+    dependent_on_task: '依赖于任务',
+    identifier: 'identifier',
+    identifier_tips: 'identifier',
+    gateway_endpoint: 'gateway_endpoint',
+    gateway_endpoint_tips: 'gateway_endpoint',
+    is_periodic: 'is_periodic',
+    is_periodic_tips: 'is_periodic',
+    dynamic_options: 'dynamic_options',
+    dynamic_options_tips: 'dynamic_options',
+    static_partitions: 'static_partitions',
+    static_partitions_tips: 'static_partitions',
+    execution_config: 'execution_config',
+    execution_config_tips: 'execution_config'
   },
   menu: {
     fav: '收藏组件',
