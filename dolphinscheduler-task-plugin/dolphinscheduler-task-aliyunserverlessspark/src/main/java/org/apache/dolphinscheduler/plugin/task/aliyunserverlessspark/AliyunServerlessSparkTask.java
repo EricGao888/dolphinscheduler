@@ -27,11 +27,13 @@ import org.apache.dolphinscheduler.plugin.task.api.TaskConstants;
 import org.apache.dolphinscheduler.plugin.task.api.TaskException;
 import org.apache.dolphinscheduler.plugin.task.api.TaskExecutionContext;
 import org.apache.dolphinscheduler.plugin.task.api.enums.ResourceType;
+import org.apache.dolphinscheduler.plugin.task.api.model.Property;
 import org.apache.dolphinscheduler.plugin.task.api.parameters.AbstractParameters;
 import org.apache.dolphinscheduler.plugin.task.api.parameters.resource.DataSourceParameters;
 import org.apache.dolphinscheduler.plugin.task.api.parameters.resource.ResourceParametersHelper;
 import org.apache.dolphinscheduler.spi.enums.DbType;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -201,7 +203,18 @@ public class AliyunServerlessSparkTask extends AbstractRemoteTask {
     protected StartJobRunRequest buildStartJobRunRequest(AliyunServerlessSparkParameters aliyunServerlessSparkParameters) {
         StartJobRunRequest startJobRunRequest = new StartJobRunRequest();
         startJobRunRequest.setRegionId(regionId);
-        startJobRunRequest.setResourceQueueId(aliyunServerlessSparkParameters.getResourceQueueId());
+        List<Property> propertyList = JSONUtils.toList(taskExecutionContext.getGlobalParams(), Property.class);
+        String queue = aliyunServerlessSparkParameters.getResourceQueueId();
+        if (CollectionUtils.isNotEmpty(propertyList)) {
+            for (Property property : propertyList) {
+                if ("runtimeQueue".equals(property.getProp())) {
+                    queue = property.getValue();
+                    break;
+                }
+            }
+        }
+
+        startJobRunRequest.setResourceQueueId(queue);
         startJobRunRequest.setCodeType(aliyunServerlessSparkParameters.getCodeType());
         startJobRunRequest.setName(aliyunServerlessSparkParameters.getJobName());
         String engineReleaseVersion = aliyunServerlessSparkParameters.getEngineReleaseVersion();
