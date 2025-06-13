@@ -311,6 +311,18 @@ public class ProcessUtils {
                 } catch (Exception e) {
                     logger.error(String.format("Get yarn application app id [%s] status failed: [%s]", appId, e.getMessage()));
                 }
+
+                if (StringUtils.isNotEmpty(appId) && appId.contains("jr-")) {
+                    try {
+                        String commandFile = String
+                                .format("%s/%s.kill", executePath, appId);
+                        String cmd = "/Users/ericgao/workspace/apps/emr-serverless-spark-tool-0.4.0/bin/spark-submit --kill " + appId;
+                        logger.info("[debug111] canceling serverless spark job - {} ...", appId);
+                        execYarnKillCommand(logger, tenantCode, appId, commandFile, cmd);
+                    } catch (Exception e) {
+                        logger.error("Failed to cancel serverless spark job - {}", appId, e);
+                    }
+                }
             }
         }
     }
@@ -418,6 +430,7 @@ public class ProcessUtils {
      * @param taskExecutionContext taskExecutionContext
      */
     public static void killYarnJob(TaskExecutionContext taskExecutionContext) {
+        logger.info("[debug111] v001");
         try {
             Thread.sleep(Constants.SLEEP_TIME_MILLIS);
             LogClientService logClient = null;
@@ -434,6 +447,7 @@ public class ProcessUtils {
             }
             if (StringUtils.isNotEmpty(log)) {
                 List<String> appIds = LoggerUtils.getAppIds(log, logger);
+                logger.info("[debug111] appIds : {}", appIds);
                 String workerDir = taskExecutionContext.getExecutePath();
                 if (StringUtils.isEmpty(workerDir)) {
                     logger.error("task instance work dir is empty");

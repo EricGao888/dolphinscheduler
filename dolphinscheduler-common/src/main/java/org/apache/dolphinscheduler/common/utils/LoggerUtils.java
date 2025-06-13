@@ -35,6 +35,8 @@ public class LoggerUtils {
      */
     private static final Pattern APPLICATION_REGEX = Pattern.compile(Constants.APPLICATION_REGEX);
 
+    private static final Pattern SEVERLESS_SPARK_APPLICATION_REGEX = Pattern.compile(Constants.SEVERLESS_SPARK_APPLICATION_REGEX);
+
     /**
      * Task Logger's prefix
      */
@@ -92,6 +94,22 @@ public class LoggerUtils {
                 appIds.add(appId);
             }
         }
+
+        if (CollectionUtils.isEmpty(appIds)) {
+            try {
+                Matcher serverlessSparkMatcher = SEVERLESS_SPARK_APPLICATION_REGEX.matcher(log);
+                while (serverlessSparkMatcher.find()) {
+                    String appId = serverlessSparkMatcher.group();
+                    if(!appIds.contains(appId)){
+                        logger.info("find app id: {}", appId);
+                        appIds.add(appId);
+                    }
+                }
+            } catch (Exception e) {
+                logger.error("failed to find serverless spark job ids", e);
+            }
+        }
+
         return appIds;
     }
 

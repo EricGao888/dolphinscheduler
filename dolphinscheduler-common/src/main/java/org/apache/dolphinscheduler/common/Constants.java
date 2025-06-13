@@ -698,6 +698,9 @@ public final class Constants {
      * application regex
      */
     public static final String APPLICATION_REGEX = "application_\\d+_\\d+";
+
+    public static final String SEVERLESS_SPARK_APPLICATION_REGEX = "jr-[a-z0-9]+";
+
     public static final String PID = OSUtils.isWindows() ? "handle" : "pid";
     /**
      * month_begin

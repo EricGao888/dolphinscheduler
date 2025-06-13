@@ -35,6 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 
 import javax.annotation.PostConstruct;
 
@@ -42,6 +43,7 @@ import javax.annotation.PostConstruct;
  *  worker server
  */
 @ComponentScan("org.apache.dolphinscheduler")
+@PropertySource(ignoreResourceNotFound = false, value = "classpath:worker.properties")
 public class WorkerServer {
 
     /**

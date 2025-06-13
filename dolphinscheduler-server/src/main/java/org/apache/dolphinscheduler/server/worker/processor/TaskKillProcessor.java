@@ -102,6 +102,7 @@ public class TaskKillProcessor implements NettyRequestProcessor {
      * @return kill result
      */
     private Pair<Boolean, List<String>> doKill(TaskKillRequestCommand killCommand){
+        logger.info("[debug111] v001");
         List<String> appIds = Collections.emptyList();
         try {
             int taskInstanceId = killCommand.getTaskInstanceId();
@@ -170,9 +171,11 @@ public class TaskKillProcessor implements NettyRequestProcessor {
             logClient = new LogClientService();
             logger.info("view log host : {},logPath : {}", host,logPath);
             String log  = logClient.viewLog(host, Constants.RPC_PORT, logPath);
+            logger.info("[debug111] log - {}", log);
 
             if (StringUtils.isNotEmpty(log)) {
                 List<String> appIds = LoggerUtils.getAppIds(log, logger);
+                logger.info("[debug111] appIds - {}", appIds);
                 if (StringUtils.isEmpty(executePath)) {
                     logger.error("task instance execute path is empty");
                     throw new RuntimeException("task instance execute path is empty");

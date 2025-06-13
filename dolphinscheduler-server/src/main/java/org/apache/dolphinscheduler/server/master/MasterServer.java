@@ -39,6 +39,7 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.PropertySource;
 
 import javax.annotation.PostConstruct;
 
@@ -48,6 +49,7 @@ import javax.annotation.PostConstruct;
 @ComponentScan(value = "org.apache.dolphinscheduler", excludeFilters = {
         @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {WorkerServer.class})
 })
+@PropertySource(ignoreResourceNotFound = false, value = "classpath:master.properties")
 public class MasterServer {
 
     /**

@@ -71,6 +71,7 @@ public class PasswordAuthenticator implements Authenticator {
             return null;
         }
         //get user object from session
+//        return userService.queryUser(1);
         return userService.queryUser(session.getUserId());
     }
 }
